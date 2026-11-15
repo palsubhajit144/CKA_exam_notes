@@ -11,7 +11,10 @@
 helm template argocd argo/argo-cd --version 7.7.3 --namespace argocd --set crds.install=false > ~/argo-helm.yaml
 ```
 3. Check: `grep -c "kind: CustomResourceDefinition" ~/argo-helm.yaml` → `0`.
-
+4. Install Argo CD:
+   ```bash
+		helm install argocd argo/argo-cd --namespace argocd --version 7.7.3 --set crds.install=false
+   ```
 **Traps:** forgetting `--version 7.7.3`, forgetting `--namespace argocd`, forgetting `crds.install=false`. If unsure about values: `helm show values argo/argo-cd --version 7.7.3 | grep -n -A3 crds`.
 
 ---
